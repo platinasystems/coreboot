@@ -43,8 +43,12 @@ $(if $(wildcard .xcompile),,$(eval $(shell util/xcompile/xcompile $(XGCCPATH) > 
 export top := $(CURDIR)
 export src := src
 export srck := $(top)/util/kconfig
+ifneq ($(O),)
+obj = $(O)
+else
 obj ?= build
 override obj := $(subst $(top)/,,$(abspath $(obj)))
+endif
 export obj
 export objutil ?= $(obj)/util
 export objk := $(objutil)/kconfig
@@ -65,7 +69,11 @@ TOPLEVEL := .
 CONFIG_SHELL := sh
 KBUILD_DEFCONFIG := configs/defconfig
 UNAME_RELEASE := $(shell uname -r)
+ifneq ($(O),)
+DOTCONFIG ?= $(obj)/.config
+else
 DOTCONFIG ?= $(top)/.config
+endif
 KCONFIG_CONFIG = $(DOTCONFIG)
 export KCONFIG_CONFIG
 HAVE_DOTCONFIG := $(wildcard $(DOTCONFIG))
@@ -97,6 +105,7 @@ all: real-all
 help_coreboot help::
 	@echo  '*** coreboot platform targets ***'
 	@echo  '  Use "make [target] V=1" for extra build debug information'
+	@echo  '  Use "make [target] O=path" to set the build path'
 	@echo  '  all                   - Build coreboot'
 	@echo  '  clean                 - Remove coreboot build artifacts'
 	@echo  '  distclean             - Remove build artifacts and config files'
