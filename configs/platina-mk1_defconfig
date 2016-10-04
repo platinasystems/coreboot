@@ -1,0 +1,13 @@
+CONFIG_VENDOR_INTEL=y
+CONFIG_FSP_FILE="3rdparty/intel-blobs/fsp/broadwell_de/BROADWELLDE_FSP.bin"
+CONFIG_CBFS_SIZE=0x00800000
+CONFIG_BOARD_INTEL_CAMELBACKMOUNTAIN_FSP=y
+CONFIG_COREBOOT_ROMSIZE_KB_8192=y
+CONFIG_CPU_MICROCODE_HEADER_FILES="3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050663_07000009.h 3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050662_0000000F.h 3rdparty/intel-blobs/microcode/cpu/broadwell_de/MFF50661_F1000008.h"
+CONFIG_HAVE_FSP_BIN=y
+# CONFIG_VGA_ROM_RUN is not set
+# CONFIG_ON_DEVICE_ROM_LOAD is not set
+CONFIG_PAYLOAD_LINUX=y
+CONFIG_PAYLOAD_FILE="../../platina-mk1.vmlinuz"
+CONFIG_LINUX_COMMAND_LINE="console=ttyS0,115200"
+CONFIG_LINUX_INITRD="../../platina-mk1.cpio.xz"
