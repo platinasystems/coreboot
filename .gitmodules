@@ -21,3 +21,6 @@
 [submodule "libgfxinit"]
 	path = 3rdparty/libgfxinit
 	url = ../libgfxinit.git
+[submodule "3rdparty/intel-blobs"]
+	path = 3rdparty/intel-blobs
+	url = ../intel-blobs.git
