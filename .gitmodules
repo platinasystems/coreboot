@@ -15,3 +15,6 @@
 [submodule "3rdparty/chromeec"]
 	path = 3rdparty/chromeec
 	url = ../chrome-ec.git
+[submodule "3rdparty/intel-blobs"]
+	path = 3rdparty/intel-blobs
+	url = ../intel-blobs.git
