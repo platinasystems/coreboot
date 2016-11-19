@@ -563,17 +563,17 @@ gitconfig:
 		fi;						     \
 	done
 	# Now set up thehooks for 3rdparty/blobs
-	if [ -d .git/modules/3rdparty/hooks -a \
-	\( util/gitconfig/commit-msg -nt .git/modules/3rdparty/hooks/commit-msg -o \
-	! -x .git/modules/3rdparty/hooks/commit-msg \) ]; then \
-		sed -e "s,%MAKE%,$(MAKE),g" util/gitconfig/commit-msg > .git/modules/3rdparty/hooks/commit-msg; \
-		chmod +x .git/modules/3rdparty/hooks/commit-msg; \
+	if [ -d .git/modules/3rdparty/blobs/hooks -a \
+	\( util/gitconfig/commit-msg -nt .git/modules/3rdparty/blobs/hooks/commit-msg -o \
+	! -x .git/modules/3rdparty/blobs/hooks/commit-msg \) ]; then \
+		sed -e "s,%MAKE%,$(MAKE),g" util/gitconfig/commit-msg > .git/modules/3rdparty/blobs/hooks/commit-msg; \
+		chmod +x .git/modules/3rdparty/blobs/hooks/commit-msg; \
 	fi
 	[ -d 3rdparty/blobs ] && cd 3rdparty/blobs && git config remote.origin.push HEAD:refs/for/master
 	git config remote.origin.push HEAD:refs/for/master
 	git config alias.sup '!git submodule update --remote --rebase && git submodule update --init --checkout'
 	git config alias.sup-destroy '!git submodule deinit --force "$$(git rev-parse --show-toplevel)"; git submodule init && git submodule update --checkout'
-	(git config --global user.name >/dev/null && git config --global user.email >/dev/null) || (printf 'Please configure your name and email in git:\n\n git config --global user.name "Your Name Comes Here"\n git config --global user.email your.email@example.com\n'; exit 1)
+	(git config --global --includes user.name >/dev/null && git config --global --includes user.email >/dev/null) || (printf 'Please configure your name and email in git:\n\n git config --global user.name "Your Name Comes Here"\n git config --global user.email your.email@example.com\n'; exit 1)
 
 include util/crossgcc/Makefile.inc
 

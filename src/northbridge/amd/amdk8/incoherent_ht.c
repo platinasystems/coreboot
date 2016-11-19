@@ -56,13 +56,6 @@ static uint8_t ht_lookup_slave_capability(pci_devfn_t dev)
 	return ht_lookup_capability(dev, 0); // Slave/Primary Interface Block Format
 }
 
-#if 0
-static uint8_t ht_lookup_host_capability(pci_devfn_t dev)
-{
-	return ht_lookup_capability(dev, 1); // Host/Secondary Interface Block Format
-}
-#endif
-
 static void ht_collapse_previous_enumeration(uint8_t bus, unsigned offset_unitid)
 {
 	pci_devfn_t dev;
@@ -435,7 +428,7 @@ static int ht_setup_chainx(pci_devfn_t udev, uint8_t upos, uint8_t bus,
 #if CONFIG_HT_CHAIN_END_UNITID_BASE != 0x20
 out:
 #endif
-end_of_chain: ;
+end_of_chain:;
 
 #if CONFIG_HT_CHAIN_END_UNITID_BASE != 0x20
 	if (offset_unitid && (ht_dev_num > 1) && (real_last_unitid != CONFIG_HT_CHAIN_END_UNITID_BASE) && !end_used) {
@@ -469,40 +462,6 @@ end_of_chain: ;
 #endif
 
 }
-
-#if 0
-#if CONFIG_RAMINIT_SYSINFO
-static void ht_setup_chain(pci_devfn_t udev, unsigned upos,
-		struct sys_info *sysinfo)
-#else
-static int ht_setup_chain(pci_devfn_t udev, unsigned upos)
-#endif
-{
-	unsigned offset_unitid = 0;
-#if ((CONFIG_HT_CHAIN_UNITID_BASE != 1) || (CONFIG_HT_CHAIN_END_UNITID_BASE != 0x20))
-	offset_unitid = 1;
-#endif
-
-	/* Assumption the HT chain that is bus 0 has the HT I/O Hub on it.
-	 * On most boards this just happens.  If a CPU has multiple
-	 * non Coherent links the appropriate bus registers for the
-	 * links needs to be programed to point at bus 0.
-	 */
-
-	/* Make certain the HT bus is not enumerated */
-	ht_collapse_previous_enumeration(0, 0);
-
-#if ((CONFIG_HT_CHAIN_UNITID_BASE != 1) || (CONFIG_HT_CHAIN_END_UNITID_BASE != 0x20))
-	offset_unitid = 1;
-#endif
-
-#if CONFIG_RAMINIT_SYSINFO
-	ht_setup_chainx(udev, upos, 0, offset_unitid, sysinfo);
-#else
-	return ht_setup_chainx(udev, upos, 0, offset_unitid);
-#endif
-}
-#endif
 
 static int optimize_link_read_pointer(uint8_t node, uint8_t linkn, uint8_t linkt, uint8_t val)
 {
@@ -663,7 +622,7 @@ static int ht_setup_chains(uint8_t ht_c_num)
 		regpos = ((reg & 0xf00)>>8) * 0x20 + 0x94; // link n;it will decide 0x94 or 0xb4, 0x0xd4;
 		busn = (reg & 0xff0000)>>16;
 
-		dword = pci_read_config32(PCI_DEV(0, devpos, 0), regpos) ;
+		dword = pci_read_config32(PCI_DEV(0, devpos, 0), regpos);
 		dword &= ~(0xffff<<8);
 		dword |= (reg & 0xffff0000)>>8;
 		pci_write_config32(PCI_DEV(0, devpos,0), regpos , dword);

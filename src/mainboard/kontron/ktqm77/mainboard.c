@@ -148,7 +148,7 @@ static int int15_handler(void)
 		X86_EAX |= 0x015f;
 		res = 1;
 		break;
-        default:
+	default:
 		printk(BIOS_DEBUG, "Unknown INT15 function %04x!\n",
 		       X86_EAX & 0xffff);
 		break;
@@ -159,8 +159,8 @@ static int int15_handler(void)
 
 
 
-// mainboard_enable is executed as first thing after
-// enumerate_buses().
+/* mainboard_enable is executed as first thing after */
+/* enumerate_buses(). */
 
 static void mainboard_enable(device_t dev)
 {

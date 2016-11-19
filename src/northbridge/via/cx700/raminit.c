@@ -303,8 +303,8 @@ static const u8 Init_Rank_Reg_Table[] = {
 
 static const u16 DDR2_MRS_table[] = {
 /* CL:	2,     3,     4,     5 */
-	0x150, 0x1d0, 0x250, 0x2d0,	/* BL = 4 ;Use 1X-bandwidth MA table to init DRAM */
-	0x158, 0x1d8, 0x258, 0x2d8,	/* BL = 8 ;Use 1X-bandwidth MA table to init DRAM */
+	0x150, 0x1d0, 0x250, 0x2d0,	/* BL = 4; Use 1X-bandwidth MA table to init DRAM */
+	0x158, 0x1d8, 0x258, 0x2d8,	/* BL = 8; Use 1X-bandwidth MA table to init DRAM */
 };
 
 #define	MRS_DDR2_TWR2	((0 << 15) | (0 << 20) | (1 << 12))
@@ -815,7 +815,6 @@ static void sdram_set_safe_values(const struct mem_controller *ctrl)
 
 	/* Clock Phase Control for FeedBack Mode */
 	regs = pci_read_config8(MEMCTRL, 0x90);
-//      regs |= 0x80;
 	pci_write_config8(MEMCTRL, 0x90, regs);
 
 	regs = pci_read_config8(PCI_DEV(0, 0, 4), SCRATCH_DRAM_FREQ);
@@ -1343,13 +1342,6 @@ static void sdram_enable(const struct mem_controller *ctrl)
 	/****************************************************************/
 	/*     Find out the lowest Bank Interleave and Set Register     */
 	/****************************************************************/
-#if 0
-	//TODO
-	reg8 = pci_read_config8(MEMCTRL, 0x69);
-	reg8 &= ~0xc0;
-	reg8 |= 0x80;		//8 banks
-	pci_write_config8(MEMCTRL, 0x69, reg8);
-#endif
 	dl = 2;
 	for (i = 0; i < 4; i++) {
 		reg8 = pci_read_config8(PCI_DEV(0, 0, 4), (SCRATCH_RANK_0 + i));

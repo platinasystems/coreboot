@@ -92,7 +92,7 @@ static struct rk3399_cru_reg * const cru_ptr = (void *)CRU_BASE;
 #define PERILP0_PCLK_HZ	(49500*KHz)
 
 #define PERILP1_HCLK_HZ	(99000*KHz)
-#define PERILP1_PCLK_HZ	(49500*KHz)
+#define PERILP1_PCLK_HZ	(99000*KHz)
 
 #define PWM_CLOCK_HZ    PMU_PCLK_HZ
 
@@ -101,9 +101,14 @@ enum apll_frequencies {
 	APLL_600_MHZ,
 };
 
+enum cpu_cluster {
+	CPU_CLUSTER_LITTLE,
+	CPU_CLUSTER_BIG,
+};
+
 void rkclk_init(void);
 int rkclk_configure_vop_dclk(u32 vop_id, u32 dclk_hz);
-void rkclk_configure_cpu(enum apll_frequencies apll_freq, bool is_big);
+void rkclk_configure_cpu(enum apll_frequencies freq, enum cpu_cluster cluster);
 void rkclk_configure_ddr(unsigned int hz);
 void rkclk_configure_emmc(void);
 void rkclk_configure_i2s(unsigned int hz);

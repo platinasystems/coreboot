@@ -86,17 +86,6 @@ static void set_io_addr_reg(device_t dev, u32 nodeid, u32 linkn, u32 reg,
 	for (i = 0; i < node_nums; i++)
 		pci_write_config32(__f1_dev[i], reg+4, tempreg);
 	tempreg = 3 /*| (3<<4)*/ | ((io_min&0xf0)<<(12-4));	      //base :ISA and VGA ?
-#if 0
-	// FIXME: can we use VGA reg instead?
-	if (dev->link[link].bridge_ctrl & PCI_BRIDGE_CTL_VGA) {
-		printk(BIOS_SPEW, "%s, enabling legacy VGA IO forwarding for %s link %s\n",
-				__func__, dev_path(dev), link);
-		tempreg |= PCI_IO_BASE_VGA_EN;
-	}
-	if (dev->link[link].bridge_ctrl & PCI_BRIDGE_CTL_NO_ISA) {
-		tempreg |= PCI_IO_BASE_NO_ISA;
-	}
-#endif
 	for (i = 0; i < node_nums; i++)
 		pci_write_config32(__f1_dev[i], reg, tempreg);
 }
@@ -391,10 +380,10 @@ static void set_resource(device_t dev, struct resource *resource, u32 nodeid)
 		set_io_addr_reg(dev, nodeid, link_num, reg, rbase>>8, rend>>8);
 	}
 	else if (resource->flags & IORESOURCE_MEM) {
-		set_mmio_addr_reg(nodeid, link_num, reg, (resource->index >>24), rbase>>8, rend>>8, node_nums) ;// [39:8]
+		set_mmio_addr_reg(nodeid, link_num, reg, (resource->index >>24), rbase>>8, rend>>8, node_nums); // [39:8]
 	}
 	resource->flags |= IORESOURCE_STORED;
-	snprintf(buf, sizeof (buf), " <node %x link %x>",
+	snprintf(buf, sizeof(buf), " <node %x link %x>",
 			nodeid, link_num);
 	report_resource_stored(dev, resource, buf);
 }
@@ -824,7 +813,7 @@ static void domain_set_resources(device_t dev)
 
 		if (!(d.mask & 1)) continue;
 		basek = ((resource_t)(d.base & 0x1fffff00)) << 9; // could overflow, we may lost 6 bit here
-		limitk = ((resource_t)(((d.mask & ~1) + 0x000FF) & 0x1fffff00)) << 9 ;
+		limitk = ((resource_t)(((d.mask & ~1) + 0x000FF) & 0x1fffff00)) << 9;
 
 		sizek = limitk - basek;
 

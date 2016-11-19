@@ -50,12 +50,6 @@ static enum dram_speeds get_sdram_index(void)
 
 	if (IS_ENABLED(CONFIG_BOARD_GOOGLE_KEVIN))
 		switch (id) {
-		case 0:
-		case 1:
-		case 2:
-			return dram_200MHz;
-		case 3:
-			return dram_666MHz_NO_ODT;
 		case 4:
 			return dram_800MHz;
 		default:

@@ -34,8 +34,6 @@
 
 #include <reset.h>
 
-// #define DEBUG_DIMM_SPD 1
-
 static u8 ReconfigureDIMMspare_D(struct MCTStatStruc *pMCTstat,
 					struct DCTStatStruc *pDCTstatA);
 static void DQSTiming_D(struct MCTStatStruc *pMCTstat,
@@ -226,7 +224,7 @@ static const u8 Table_DQSRcvEn_Offset[] = {0x00,0x01,0x10,0x11,0x2};
         CS3   M[B,A]_CLK_H/L[5]
 
    Then:
-                        ;    CS0        CS1        CS2        CS3        CS4        CS5        CS6        CS7
+                       ;    CS0        CS1        CS2        CS3        CS4        CS5        CS6        CS7
    MEMCLK_MAPPING  EQU    00010000b, 00000100b, 00001000b, 00100000b, 00000000b, 00000000b, 00000000b, 00000000b
 */
 
@@ -2829,17 +2827,6 @@ restartinit:
 		 * speed is the same as the speed used in the previous boot.
 		 * How to get the desired speed at this point in the code?
 		 */
-#if 0
-		for (Node = 0; Node < MAX_NODES_SUPPORTED; Node++) {
-			struct DCTStatStruc *pDCTstat;
-			pDCTstat = pDCTstatA + Node;
-
-			if (pDCTstat->NodePresent) {
-				if (pDCTstat->spd_data.nvram_memclk[0] != pDCTstat->DIMMAutoSpeed)
-					allow_config_restore = 0;
-			}
-		}
-#endif
 
 		printk(BIOS_DEBUG, "mctAutoInitMCT_D: DQSTiming_D\n");
 		DQSTiming_D(pMCTstat, pDCTstatA, allow_config_restore);	/* Get Receiver Enable and DQS signal timing*/
@@ -3623,7 +3610,6 @@ static void DQSTiming_D(struct MCTStatStruc *pMCTstat,
 	}
 
 retry_dqs_training_and_levelization:
-	// nv_DQSTrainCTL = mctGet_NVbits(NV_DQSTrainCTL);
 	nv_DQSTrainCTL = !allow_config_restore;
 
 	mct_BeforeDQSTrain_D(pMCTstat, pDCTstatA);
@@ -3662,8 +3648,6 @@ retry_dqs_training_and_levelization:
 		mct_WriteLevelization_HW(pMCTstat, pDCTstatA, SecondPass);
 
 		if (is_fam15h()) {
-			/* Receiver Enable Training Pass 2 */
-			// TrainReceiverEn_D(pMCTstat, pDCTstatA, SecondPass);
 
 			/* TODO:
 			 * Determine why running TrainReceiverEn_D in SecondPass
@@ -5258,7 +5242,7 @@ static u8 AutoConfig_D(struct MCTStatStruc *pMCTstat,
 					val = p[dword];
 					byte &= ~val;
 				}
-				dword++ ;
+				dword++;
 			}
 			DramTimingLo &= ~(0xff << 24);
 			DramTimingLo |= byte << 24;

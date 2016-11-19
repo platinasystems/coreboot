@@ -1,7 +1,7 @@
 /*
  * This file is part of the coreboot project.
  *
- * Copyright 2013 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -9,22 +9,13 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
  * GNU General Public License for more details.
  */
 
-#include <arch/exception.h>
-#include <bootblock_common.h>
-#include <console/console.h>
-#include <program_loading.h>
+#ifndef MAINBOARD_GPIO_H
+#define MAINBOARD_GPIO_H
 
-// the qemu part of all this is very, very non-hardware like.
-// so it gets its own bootblock.
-void main(void)
-{
-	if (IS_ENABLED(CONFIG_BOOTBLOCK_CONSOLE)) {
-		console_init();
-		exception_init();
-	}
-	run_romstage();
-}
+#include <baseboard/gpio.h>
+
+#endif /* MAINBOARD_GPIO_H */

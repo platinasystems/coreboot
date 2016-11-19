@@ -25,11 +25,32 @@
 #include <cpu/x86/mtrr.h>
 #include <device/device.h>
 #include <device/pci.h>
+#include <reg_script.h>
 #include <soc/cpu.h>
+#include <soc/iomap.h>
 #include <soc/smm.h>
 
+static const struct reg_script core_msr_script[] = {
+	/* Enable C-state and IO/MWAIT redirect */
+	REG_MSR_WRITE(MSR_PMG_CST_CONFIG_CONTROL,
+		(PKG_C_STATE_LIMIT_C2_MASK | CORE_C_STATE_LIMIT_C10_MASK
+		| IO_MWAIT_REDIRECT_MASK | CST_CFG_LOCK_MASK)),
+	/* Power Management I/O base address for I/O trapping to C-states */
+	REG_MSR_WRITE(MSR_PMG_IO_CAPTURE_BASE,
+		(ACPI_PMIO_CST_REG | (PMG_IO_BASE_CST_RNG_BLK_SIZE << 16))),
+	/* Disable C1E */
+	REG_MSR_RMW(MSR_POWER_CTL, ~0x2, 0),
+	REG_SCRIPT_END
+};
+
+static void soc_core_init(device_t cpu)
+{
+	/* Set core MSRs */
+	reg_script_run(core_msr_script);
+}
+
 static struct device_operations cpu_dev_ops = {
-	.init = DEVICE_NOOP,
+	.init = soc_core_init,
 };
 
 static struct cpu_device_id cpu_table[] = {
@@ -73,6 +94,9 @@ static void pre_mp_init(void)
 {
 	x86_setup_mtrrs_with_detect();
 	x86_mtrr_check();
+
+	/* Make sure BSP is using the microcode from cbfs */
+	intel_update_microcode_from_cbfs();
 }
 
 /* Find CPU topology */
@@ -99,19 +123,23 @@ static void get_smm_info(uintptr_t *perm_smbase, size_t *perm_smsize,
 {
 	void *smm_base;
 	size_t smm_size;
+	void *handler_base;
+	size_t handler_size;
 
 	/* All range registers are aligned to 4KiB */
 	const uint32_t rmask = ~((1 << 12) - 1);
 
 	/* Initialize global tracking state. */
 	smm_region(&smm_base, &smm_size);
+	smm_subregion(SMM_SUBREGION_HANDLER, &handler_base, &handler_size);
+
 	relo_attrs.smbase = (uint32_t)smm_base;
 	relo_attrs.smrr_base = relo_attrs.smbase | MTRR_TYPE_WRBACK;
 	relo_attrs.smrr_mask = ~(smm_size - 1) & rmask;
 	relo_attrs.smrr_mask |= MTRR_PHYS_MASK_VALID;
 
-	*perm_smbase = relo_attrs.smbase;
-	*perm_smsize = smm_size - CONFIG_SMM_RESERVED_SIZE;
+	*perm_smbase = (uintptr_t)handler_base;
+	*perm_smsize = handler_size;
 	*smm_save_state_size = sizeof(em64t100_smm_state_save_area_t);
 }
 

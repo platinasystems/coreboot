@@ -129,7 +129,7 @@ u32 get_io_addr_index(u32 nodeid, u32 linkn)
 
 	for (index = 0; index < 256; index++) {
 		if (sysconf.conf_io_addrx[index+4] == 0) {
-			sysconf.conf_io_addr[index+4] =  (nodeid & 0x3f)  ;
+			sysconf.conf_io_addr[index+4] =  (nodeid & 0x3f);
 			sysconf.conf_io_addrx[index+4] = 1 | ((linkn & 0x7)<<4);
 			return index;
 		 }
@@ -144,7 +144,7 @@ u32 get_mmio_addr_index(u32 nodeid, u32 linkn)
 
 	for (index = 0; index < 64; index++) {
 		if (sysconf.conf_mmio_addrx[index+8] == 0) {
-			sysconf.conf_mmio_addr[index+8] = (nodeid & 0x3f) ;
+			sysconf.conf_mmio_addr[index+8] = (nodeid & 0x3f);
 			sysconf.conf_mmio_addrx[index+8] = 1 | ((linkn & 0x7)<<4);
 			return index;
 		}
@@ -164,7 +164,7 @@ void store_conf_io_addr(u32 nodeid, u32 linkn, u32 reg, u32 index,
 
 	val = (nodeid & 0x3f); // 6 bits used
 	sysconf.conf_io_addr[index] = val | ((io_max<<8) & 0xfffff000); //limit : with nodeid
-	val = 3 | ((linkn & 0x7)<<4) ; // 8 bits used
+	val = 3 | ((linkn & 0x7)<<4); // 8 bits used
 	sysconf.conf_io_addrx[index] = val | ((io_min<<8) & 0xfffff000); // base : with enable bit
 
 	if (sysconf.io_addr_num < (index+1))
@@ -180,9 +180,9 @@ void store_conf_mmio_addr(u32 nodeid, u32 linkn, u32 reg, u32 index,
 	/* io range allocation */
 	index = (reg-0x80)>>3;
 
-	val = (nodeid & 0x3f) ; // 6 bits used
+	val = (nodeid & 0x3f); // 6 bits used
 	sysconf.conf_mmio_addr[index] = val | (mmio_max & 0xffffff00); //limit : with nodeid and linkn
-	val = 3 | ((linkn & 0x7)<<4) ; // 8 bits used
+	val = 3 | ((linkn & 0x7)<<4); // 8 bits used
 	sysconf.conf_mmio_addrx[index] = val | (mmio_min & 0xffffff00); // base : with enable bit
 
 	if (sysconf.mmio_addr_num<(index+1))
@@ -202,17 +202,6 @@ void set_io_addr_reg(device_t dev, u32 nodeid, u32 linkn, u32 reg,
 		pci_write_config32(__f1_dev[i], reg+4, tempreg);
 
 	tempreg = 3 /*| (3<<4)*/ | ((io_min&0xf0)<<(12-4));	      //base :ISA and VGA ?
-#if 0
-	// FIXME: can we use VGA reg instead?
-	if (dev->link[link].bridge_ctrl & PCI_BRIDGE_CTL_VGA) {
-		printk(BIOS_SPEW, "%s, enabling legacy VGA IO forwarding for %s link %s\n",
-			__func__, dev_path(dev), link);
-		tempreg |= PCI_IO_BASE_VGA_EN;
-	}
-	if (dev->link[link].bridge_ctrl & PCI_BRIDGE_CTL_NO_ISA) {
-		tempreg |= PCI_IO_BASE_NO_ISA;
-	}
-#endif
 	for (i = 0; i < sysconf.nodes; i++)
 		pci_write_config32(__f1_dev[i], reg, tempreg);
 }

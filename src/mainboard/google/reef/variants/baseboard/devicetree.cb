@@ -15,7 +15,7 @@ chip soc/intel/apollolake
 	# GPIO for PERST_0
 	# If the Board has PERST_0 signal, assign the GPIO
 	# If the Board does not have PERST_0, assign GPIO_PRT0_UDEF
-	register "prt0_gpio" = "GPIO_PRT0_UDEF"
+	register "prt0_gpio" = "GPIO_122"
 
 	# EMMC TX DATA Delay 1
 	# Refer to EDS-Vol2-22.3.
@@ -48,6 +48,11 @@ chip soc/intel/apollolake
 
 	# Enable DPTF
 	register "dptf_enable" = "1"
+
+	# PL1 override 12000 mW: the energy calculation is wrong with the
+	# current VR solution. Experiments show that SoC TDP max (6W) can
+	# be reached when RAPL PL1 is set to 12W.
+	register "tdp_pl1_override_mw" = "12000"
 
 	# Enable Audio Clock and Power gating
 	register "hdaudio_clk_gate_enable" = "1"
@@ -84,7 +89,8 @@ chip soc/intel/apollolake
 		device pci 0d.3 on  end	# - Shared SRAM
 		device pci 0e.0 on	# - Audio
 			chip drivers/generic/max98357a
-				register "sdmode_gpio" =  "ACPI_GPIO_OUTPUT(GPIO_76)"
+				register "sdmode_gpio" =  "ACPI_GPIO_OUTPUT_ACTIVE_HIGH(GPIO_76)"
+				register "sdmode_delay" = "5"
 				device generic 0 on end
 			end
 		end

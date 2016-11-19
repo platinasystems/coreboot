@@ -29,6 +29,16 @@
 
 #include "board.h"
 
+/*
+ * Wifi's PDN/RST line is pulled down by its (unpowered) voltage rails, but
+ * this reset pin is pulled up by default. Let's drive it low as early as we
+ * can.
+ */
+static void deassert_wifi_power(void)
+{
+	gpio_output(GPIO(1, B, 3), 0);  /* Assert WLAN_MODULE_RST# */
+}
+
 static void configure_emmc(void)
 {
 	/* Host controller does not support programmable clock generator.
@@ -41,6 +51,66 @@ static void configure_emmc(void)
 	write32(&rk3399_grf->emmccore_con[11], RK_CLRSETBITS(0xff, 0));
 
 	rkclk_configure_emmc();
+}
+
+static void register_apio_suspend(void)
+{
+	static struct bl31_apio_param param_apio = {
+		.h = {
+			.type = PARAM_SUSPEND_APIO,
+		},
+		.apio = {
+			.apio1 = 1,
+			.apio2 = 1,
+			.apio3 = 1,
+			.apio4 = 1,
+			.apio5 = 1,
+		},
+	};
+	register_bl31_param(&param_apio.h);
+}
+
+static void register_gpio_suspend(void)
+{
+	/*
+	 * These three GPIO params are used to shut down the 1.5V, 1.8V and
+	 * 3.3V power rails, which need to be shut down ordered by voltage,
+	 * with highest voltage first.
+	 * Since register_bl31() appends to the front of the list, we need to
+	 * register them backwards, with 1.5V coming first.
+	 */
+	static struct bl31_gpio_param param_p15_en = {
+		.h = {
+			.type = PARAM_SUSPEND_GPIO,
+		},
+		.gpio = {
+			.polarity = BL31_GPIO_LEVEL_LOW,
+		},
+	};
+	param_p15_en.gpio.index = GET_GPIO_NUM(GPIO_P15V_EN);
+	register_bl31_param(&param_p15_en.h);
+
+	static struct bl31_gpio_param param_p18_audio_en = {
+		.h = {
+			.type = PARAM_SUSPEND_GPIO,
+		},
+		.gpio = {
+			.polarity = BL31_GPIO_LEVEL_LOW,
+		},
+	};
+	param_p18_audio_en.gpio.index = GET_GPIO_NUM(GPIO_P18V_AUDIO_PWREN);
+	register_bl31_param(&param_p18_audio_en.h);
+
+	static struct bl31_gpio_param param_p30_en = {
+		.h = {
+			.type = PARAM_SUSPEND_GPIO,
+		},
+		.gpio = {
+			.polarity = BL31_GPIO_LEVEL_LOW,
+		},
+	};
+	param_p30_en.gpio.index = GET_GPIO_NUM(GPIO_P30V_EN);
+	register_bl31_param(&param_p30_en.h);
 }
 
 static void register_reset_to_bl31(void)
@@ -94,19 +164,13 @@ static void configure_sdmmc(void)
 
 	gpio_output(GPIO(2, D, 4), 0);  /* Keep the max voltage */
 
-	/*
-	 * The SD card on this board is connected to port SDMMC0, which is
-	 * multiplexed with GPIO4B pins 0..5.
-	 *
-	 * Disable all pullups on these pins. For pullup configuration
-	 * register layout stacks banks 2 through 4 together, hence [2] means
-	 * group 4, [1] means bank B. This register is described on page 342
-	 * of section 1 of the TRM.
-	 *
-	 * Each GPIO pin's pull config takes two bits, writing zero to the
-	 * field disables pull ups/downs, as described on page 342 of rk3399
-	 * TRM Version 0.3 Part 1.
-	 */
+	gpio_input(GPIO(4, B, 0));	/* SDMMC0_D0 remove pull-up */
+	gpio_input(GPIO(4, B, 1));	/* SDMMC0_D1 remove pull-up */
+	gpio_input(GPIO(4, B, 2));	/* SDMMC0_D2 remove pull-up */
+	gpio_input(GPIO(4, B, 3));	/* SDMMC0_D3 remove pull-up */
+	gpio_input(GPIO(4, B, 4));	/* SDMMC0_CLK remove pull-down */
+	gpio_input(GPIO(4, B, 5));	/* SDMMC0_CMD remove pull-up */
+
 	write32(&rk3399_grf->gpio2_p[2][1], RK_CLRSETBITS(0xfff, 0));
 
 	/*
@@ -132,6 +196,16 @@ static void configure_sdmmc(void)
 
 static void configure_codec(void)
 {
+	gpio_input(GPIO(3, D, 0));	/* I2S0_SCLK remove pull-up */
+	gpio_input(GPIO(3, D, 1));	/* I2S0_RX remove pull-up */
+	gpio_input(GPIO(3, D, 2));	/* I2S0_TX remove pull-up */
+	gpio_input(GPIO(3, D, 3));	/* I2S0_SDI0 remove pull-up */
+	gpio_input(GPIO(3, D, 4));	/* I2S0_SDI1 remove pull-up */
+	/* GPIO3_D5 (I2S0_SDI2SDO2) not connected */
+	gpio_input(GPIO(3, D, 6));	/* I2S0_SDO1 remove pull-up */
+	gpio_input(GPIO(3, D, 7));	/* I2S0_SDO0 remove pull-up */
+	gpio_input(GPIO(4, A, 0));	/* I2S0_MCLK remove pull-up */
+
 	write32(&rk3399_grf->iomux_i2s0, IOMUX_I2S0);
 	write32(&rk3399_grf->iomux_i2sclk, IOMUX_I2SCLK);
 
@@ -163,9 +237,17 @@ static void setup_usb(void)
 	/* Set max ODT compensation voltage and current tuning reference. */
 	write32(&rk3399_grf->usbphy0_ctrl[3], 0x0fff02e3);
 	write32(&rk3399_grf->usbphy1_ctrl[3], 0x0fff02e3);
-	/* Set max pre-emphasis level, only on Kevin PHY0. */
-	if (IS_ENABLED(CONFIG_BOARD_GOOGLE_KEVIN))
+	/* Set max pre-emphasis level, only on Kevin PHY0 and PHY1,
+	 * and disable the pre-emphasize in eop state to avoid
+	 * mis-trigger the disconnect detection. */
+	if (IS_ENABLED(CONFIG_BOARD_GOOGLE_KEVIN)) {
 		write32(&rk3399_grf->usbphy0_ctrl[12], 0xffff00a7);
+		write32(&rk3399_grf->usbphy1_ctrl[12], 0xffff00a7);
+		write32(&rk3399_grf->usbphy0_ctrl[0], 0x00010000);
+		write32(&rk3399_grf->usbphy1_ctrl[0], 0x00010000);
+		write32(&rk3399_grf->usbphy0_ctrl[13], 0x00010000);
+		write32(&rk3399_grf->usbphy1_ctrl[13], 0x00010000);
+	}
 
 	setup_usb_otg0();
 	setup_usb_otg1();
@@ -173,6 +255,7 @@ static void setup_usb(void)
 
 static void mainboard_init(device_t dev)
 {
+	deassert_wifi_power();
 	configure_sdmmc();
 	configure_emmc();
 	configure_codec();
@@ -180,6 +263,8 @@ static void mainboard_init(device_t dev)
 	setup_usb();
 	register_reset_to_bl31();
 	register_poweroff_to_bl31();
+	register_gpio_suspend();
+	register_apio_suspend();
 }
 
 static void enable_backlight_booster(void)
@@ -206,10 +291,13 @@ static void enable_backlight_booster(void)
 	 */
 	udelay(1000);
 
-	/* Select pinmux for i2c0, which is the display backlight booster. */
+	gpio_input(GPIO(1, B, 7));	/* I2C0_SDA remove pull_up */
+	gpio_input(GPIO(1, C, 0));	/* I2C0_SCL remove pull_up */
+
+	i2c_init(0, 100*KHz);
+
 	write32(&rk3399_pmugrf->iomux_i2c0_sda, IOMUX_I2C0_SDA);
 	write32(&rk3399_pmugrf->iomux_i2c0_scl, IOMUX_I2C0_SCL);
-	i2c_init(0, 100*KHz);
 
 	for (i = 0; i < ARRAY_SIZE(i2c_writes); i++) {
 		i2c_buf[0] = i2c_writes[i].reg;

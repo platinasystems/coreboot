@@ -326,9 +326,8 @@ static void vx900_dram_write_init_config(void)
 
 	/* Fast cycle control for CPU-to-DRAM Read Cycle 0:Disabled.
 	 * This CPU bus controller will wait for all data */
-	////pci_mod_config8(HOST_BUS, 0x51, (1 << 7), 0);
+
 	/* Memory to CPU bus Controller Conversion Mode 1: Synchronous  mode */
-	////pci_mod_config8(HOST_BUS, 0x54, 0, (1 << 1));
 }
 
 static void dram_find_spds_ddr3(const dimm_layout * addr, dimm_info * dimm)
@@ -737,7 +736,7 @@ static void vx900_dram_ddr3_do_hw_mrs(u8 ma_swap, u8 rtt_nom,
 	printram("Hw MRS set is 0x%4x\n", reg16);
 	pci_write_config16(MCU, 0xcc, reg16);
 	/* Wait for MRS commands to be sent */
-	while (pci_read_config8(MCU, 0xcc) & 1) ;
+	while (pci_read_config8(MCU, 0xcc) & 1);
 }
 
 /*
@@ -1114,7 +1113,7 @@ static void vx900_rx_capture_range_calib(u8 pinswap)
 	pci_write_config8(MCU, 0x71, reg8);
 
 	/* Wait for it */
-	while (pci_read_config8(MCU, 0x71) & 0x10) ;
+	while (pci_read_config8(MCU, 0x71) & 0x10);
 	vx900_dram_exit_read_leveling(pinswap);
 }
 
@@ -1146,7 +1145,7 @@ static void vx900_rx_dqs_delay_calib(u8 pinswap)
 	pci_mod_config8(MCU, 0x71, 0x03, 0x02);
 
 	/* Wait for calibration to complete */
-	while (pci_read_config8(MCU, 0x71) & 0x02) ;
+	while (pci_read_config8(MCU, 0x71) & 0x02);
 	vx900_dram_exit_read_leveling(pinswap);
 
 	/* Restore the refresh counter */
@@ -1163,7 +1162,7 @@ static void vx900_tx_dqs_trigger_calib(u8 pattern)
 	/* Trigger calibration */
 	pci_mod_config8(MCU, 0x75, 0, 0x20);
 	/* Wait for calibration */
-	while (pci_read_config8(MCU, 0x75) & 0x20) ;
+	while (pci_read_config8(MCU, 0x75) & 0x20);
 }
 
 /*
@@ -1192,7 +1191,7 @@ static void vx900_tx_dq_delay_calib(void)
 	/* Trigger calibration */
 	pci_mod_config8(MCU, 0x75, 0, 0x02);
 	/* Wait for calibration */
-	while (pci_read_config8(MCU, 0x75) & 0x02) ;
+	while (pci_read_config8(MCU, 0x75) & 0x02);
 }
 
 static void vx900_rxdqs_adjust(delay_range * dly)
@@ -1335,7 +1334,6 @@ static void vx900_dram_calibrate_transmit_delays(delay_range * tx_dq,
 			/* FIXME: Except that we have not yet told the MCU what
 			 * the geometry of the DIMM is, hence we don't trust
 			 * this test for now */
-			////continue;
 		}
 		/* Good. We should be able to use this DIMM */
 		/* That's it. We're done */
@@ -1614,14 +1612,8 @@ static void vx900_dram_write_final_config(ramctr_timing * ctrl)
 	/* Tri-state  MCSi# when rank is in self-refresh */
 	pci_mod_config8(MCU, 0x99, 0, 0x0f);
 
-	////pci_write_config8(MCU, 0x69, 0xe7);
 	/* Enable paging mode and 8 page registers */
 	pci_mod_config8(MCU, 0x69, 0, 0xe5);
-	////pci_write_config8(MCU, 0x72, 0x0f);
-
-	////pci_write_config8(MCU, 0x97, 0xa4); /* self-refresh */
-	////pci_write_config8(MCU, 0x98, 0xba); /* self-refresh II */
-	////pci_write_config8(MCU, 0x9a, 0x80); /* self-refresh III */
 
 	/* Enable automatic triggering of short ZQ calibration */
 	pci_write_config8(MCU, 0xc8, 0x80);

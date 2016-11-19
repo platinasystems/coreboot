@@ -29,6 +29,7 @@
 #include <device/pci_def.h>
 #include <device/resource.h>
 #include <fsp/api.h>
+#include <fsp/memmap.h>
 #include <fsp/util.h>
 #include <soc/iomap.h>
 #include <soc/northbridge.h>
@@ -105,6 +106,9 @@ asmlinkage void car_stage_entry(void)
 	uintptr_t top_of_ram;
 	bool s3wake;
 	struct chipset_power_state *ps = car_get_var_ptr(&power_state);
+	void *smm_base;
+	size_t smm_size;
+	uintptr_t tseg_base;
 
 	timestamp_add_now(TS_START_ROMSTAGE);
 
@@ -134,6 +138,17 @@ asmlinkage void car_stage_entry(void)
 	if (IS_ENABLED(CONFIG_BOOT_DEVICE_MEMORY_MAPPED))
 		postcar_frame_add_mtrr(&pcf, -CONFIG_ROM_SIZE, CONFIG_ROM_SIZE,
 					MTRR_TYPE_WRPROT);
+
+	/*
+	* Cache the TSEG region at the top of ram. This region is
+	* not restricted to SMM mode until SMM has been relocated.
+	* By setting the region to cacheable it provides faster access
+	* when relocating the SMM handler as well as using the TSEG
+	* region for other purposes.
+	*/
+	smm_region(&smm_base, &smm_size);
+	tseg_base = (uintptr_t)smm_base;
+	postcar_frame_add_mtrr(&pcf, tseg_base, smm_size, MTRR_TYPE_WRBACK);
 
 	run_postcar_phase(&pcf);
 }
@@ -169,6 +184,15 @@ void platform_fsp_memory_init_params_cb(FSPM_UPD *mupd)
 	 */
 	mupd->FspmConfig.SkipCseRbp =
 		IS_ENABLED(CONFIG_BOOT_DEVICE_MEMORY_MAPPED);
+
+	/*
+	 * Converged Security Engine (CSE) has secure storage functionality.
+	 * HECI2 device can be used to access that functionality. However, part
+	 * of S3 resume flow involves resetting HECI2 which takes 136ms. Since
+	 * coreboot does not use secure storage functionality, instruct FSP to
+	 * skip HECI2 reset.
+	 */
+	mupd->FspmConfig.EnableS3Heci2 = 0;
 }
 
 __attribute__ ((weak))
