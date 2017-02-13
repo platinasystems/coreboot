@@ -23,6 +23,7 @@ ramstage-y += reset.c
 ramstage-y += acpi.c
 ramstage-y += smbus_common.c
 ramstage-y += smbus.c
+ramstage-y += iobp.c
 
 CPPFLAGS_common += -I$(src)/soc/intel/fsp_broadwell_de/include
 CPPFLAGS_common += -I$(src)/soc/intel/fsp_broadwell_de/fsp
