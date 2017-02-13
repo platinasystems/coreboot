@@ -37,6 +37,7 @@ ramstage-y += vtd.c
 ramstage-y += ubox.c
 ramstage-$(CONFIG_HAVE_SMI_HANDLER) += pmutil.c
 ramstage-$(CONFIG_HAVE_SMI_HANDLER) += smmrelocate.c
+ramstage-y += iobp.c
 
 smm-y += pmutil.c
 smm-y += smihandler.c
