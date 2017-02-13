@@ -29,6 +29,7 @@ ramstage-$(CONFIG_HAVE_SMI_HANDLER) += smmrelocate.c
 ramstage-$(CONFIG_HAVE_SMI_HANDLER) += pmutil.c
 smm-$(CONFIG_HAVE_SMI_HANDLER) += pmutil.c
 smm-$(CONFIG_HAVE_SMI_HANDLER) += smihandler.c
+ramstage-y += iobp.c
 
 CPPFLAGS_common += -I$(src)/soc/intel/fsp_broadwell_de/include
 CPPFLAGS_common += -I$(src)/soc/intel/fsp_broadwell_de/fsp
