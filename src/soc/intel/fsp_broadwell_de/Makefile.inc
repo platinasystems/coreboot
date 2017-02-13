@@ -33,6 +33,7 @@ ramstage-y += vtd.c
 smm-$(CONFIG_HAVE_SMI_HANDLER) += pmutil.c
 smm-$(CONFIG_HAVE_SMI_HANDLER) += smihandler.c
 smm-$(CONFIG_HAVE_SMI_HANDLER) += tsc_freq.c
+ramstage-y += iobp.c
 
 CPPFLAGS_common += -I$(src)/soc/intel/fsp_broadwell_de/include
 CPPFLAGS_common += -I$(src)/soc/intel/fsp_broadwell_de/fsp
