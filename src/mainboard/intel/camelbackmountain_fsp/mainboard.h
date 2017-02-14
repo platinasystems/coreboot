@@ -1,8 +1,7 @@
 /*
  * This file is part of the coreboot project.
  *
- * Copyright (C) 2007-2009 coresystems GmbH
- * Copyright (C) 2011 Google Inc.
+ * Copyright (C) 2017 Platina Systems Corporation.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,20 +13,7 @@
  * GNU General Public License for more details.
  */
 
-#include <types.h>
 #include <device/device.h>
-#include <device/pci_def.h>
-#if CONFIG(VGA_ROM_RUN)
-#include <x86emu/x86emu.h>
-#endif
 
-/*
- * mainboard_enable is executed as first thing after enumerate_buses().
- * This is the earliest point to add customization.
- */
-void __attribute__((weak)) mainboard_enable(device_t dev) {}
-
-struct chip_operations mainboard_ops = {
-	.init = mainboard_init,
-	.enable_dev = mainboard_enable,
-};
+extern void mainboard_init(void *);
+extern void mainboard_enable(device_t dev);
