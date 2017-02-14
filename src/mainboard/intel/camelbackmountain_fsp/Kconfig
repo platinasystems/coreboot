@@ -1,4 +1,4 @@
-if BOARD_INTEL_CAMELBACKMOUNTAIN_FSP
+if BOARD_INTEL_CAMELBACKMOUNTAIN_FSP || BOARD_INTEL_CAMELBACKMOUNTAIN_PLATINA_FSP
 
 config BOARD_SPECIFIC_OPTIONS
 	def_bool y
@@ -15,9 +15,20 @@ config MAINBOARD_DIR
 	string
 	default "intel/camelbackmountain_fsp"
 
+if BOARD_INTEL_CAMELBACKMOUNTAIN_FSP
+
 config MAINBOARD_PART_NUMBER
 	string
 	default "Camelback Mountain CRB"
+endif
+
+if BOARD_INTEL_CAMELBACKMOUNTAIN_PLATINA_FSP 
+
+config MAINBOARD_PART_NUMBER
+        string
+        default "Camelback Mountain Platina DC"
+endif
+
 
 config IRQ_SLOT_COUNT
 	int
@@ -39,3 +50,4 @@ config FSP_PACKAGE_DEFAULT
 	default n
 
 endif # BOARD_INTEL_CAMELBACKMOUNTAIN_FSP
+

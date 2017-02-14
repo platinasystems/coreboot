@@ -14,3 +14,4 @@
 ##
 
 ramstage-y += irqroute.c
+ramstage-$(CONFIG_BOARD_INTEL_CAMELBACKMOUNTAIN_PLATINA_FSP) += platina_bdxde.c
