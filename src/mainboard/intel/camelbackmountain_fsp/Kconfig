@@ -29,7 +29,6 @@ config MAINBOARD_PART_NUMBER
         default "Camelback Mountain Platina DC"
 endif
 
-
 config IRQ_SLOT_COUNT
 	int
 	default 18
@@ -50,4 +49,3 @@ config FSP_PACKAGE_DEFAULT
 	default n
 
 endif # BOARD_INTEL_CAMELBACKMOUNTAIN_FSP
-
