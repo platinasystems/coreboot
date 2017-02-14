@@ -62,5 +62,4 @@ void mainboard_init(device_t dev)
         printk(BIOS_DEBUG, "x86's U2ECR: %x\n", pch_iobp_read(0xe5004100));
         pch_iobp_update(0xe5004100, 0xffff80ff, 0x00002400);
         printk(BIOS_DEBUG, "x86's U2ECR: %x\n", pch_iobp_read(0xe5004100));
-
 }
