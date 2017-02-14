@@ -23,10 +23,9 @@
 #include <device/pci.h>
 #include <delay.h>
 
-#include "platina_bdxde.h"
+#include "mainboard.h"
 
-
-void mainboard_init(device_t dev)
+void mainboard_init(void *ignored)
 {
         device_t c_dev;
         uint32_t reg32;
