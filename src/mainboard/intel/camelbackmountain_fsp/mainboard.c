@@ -26,16 +26,17 @@
 #include <arch/io.h>
 #include <arch/interrupt.h>
 #include <boot/coreboot_tables.h>
+#include "mainboard.h"
+
+void __attribute__((weak)) mainboard_init(void *chip_info) {}
 
 /*
  * mainboard_enable is executed as first thing after enumerate_buses().
  * This is the earliest point to add customization.
  */
-static void mainboard_enable(struct device *dev)
-{
-
-}
+void __attribute__((weak)) mainboard_enable(device_t dev) {}
 
 struct chip_operations mainboard_ops = {
+	.init = mainboard_init,
 	.enable_dev = mainboard_enable,
 };
