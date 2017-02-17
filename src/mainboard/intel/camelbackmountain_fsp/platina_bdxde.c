@@ -1,8 +1,7 @@
 /*
  * This file is part of the coreboot project.
  *
- * Copyright (C) 2007-2009 coresystems GmbH
- * Copyright (C) 2011 Google Inc.
+ * Copyright (C) 2017
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,24 +34,32 @@ void mainboard_init(void *ignored)
 
         /* LPC Controller                               */
         /* Enables the LPC_GEN1_DEC iobase for the CPLD */
-        c_dev = dev_find_slot(0, LPC_DEV_FUNC);
-
-        reg32 = pci_read_config32(c_dev, 0xf0);
-        printk(BIOS_DEBUG, "RCBA: %x\n", reg32);
-        pci_write_config32(c_dev, LPC_GEN1_DEC, 0x00fc0601);
-        reg32 = pci_read_config32(c_dev, LPC_GEN1_DEC);
-        printk(BIOS_DEBUG, "LPC_GEN1_DEC: %x\n", reg32);
-
+        c_dev = dev_find_slot(0, PCI_DEVFN(0x1f, 0));
+	if(c_dev) {
+		reg32 = pci_read_config32(c_dev, 0xf0);
+	        printk(BIOS_DEBUG, "RCBA: %x\n", reg32);
+		pci_write_config32(c_dev, LPC_GEN1_DEC, 0x00fc0601);
+	        reg32 = pci_read_config32(c_dev, LPC_GEN1_DEC);
+		printk(BIOS_DEBUG, "LPC_GEN1_DEC: %x\n", reg32);
+	}
+	else {
+		printk(BIOS_DEBUG, "ERROR - could not find PCI 0:1f.0\n");
+	}
         
 	/* Intel to Broadcom PCIe Links	*/
         /* Selectable_de_emphasis      	*/
         c_dev = dev_find_slot(0, PCI_DEVFN(0x03, 0));
+	if(c_dev) {
+		reg16 = pci_read_config16(c_dev, 0xc0);
+		printk(BIOS_DEBUG, "x86's Lnkcon2: %x\n", reg16);
+		pci_write_config16(c_dev, 0xc0, (0x0042));
+		reg16 = pci_read_config16(c_dev, 0xc0);
+		printk(BIOS_DEBUG, "x86's Lnkcon2: %x\n", reg16);
 
-	reg16 = pci_read_config16(c_dev, 0xc0);	
-       	printk(BIOS_DEBUG, "x86's Lnkcon2: %x\n", reg16);	
-        pci_write_config16(c_dev, 0xc0, (reg16|0x0040));
-        reg16 = pci_read_config16(c_dev, 0xc0);
-        printk(BIOS_DEBUG, "x86's Lnkcon2: %x\n", reg16);
+	}
+	else {
+		printk(BIOS_DEBUG, "ERROR - could not find PCI 0:03.0\n");
+	}
 	
 
         /* U2ECR - USB 2.0                              */
