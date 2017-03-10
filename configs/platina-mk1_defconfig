@@ -12,5 +12,5 @@ CONFIG_HAVE_FSP_BIN=y
 CONFIG_DEFAULT_CONSOLE_LOGLEVEL_4=y
 CONFIG_PAYLOAD_LINUX=y
 CONFIG_PAYLOAD_FILE="../../platina-mk1.vmlinuz"
-CONFIG_LINUX_COMMAND_LINE="console=ttyS0,115200 loglevel=4 goesroot=auto:10"
+CONFIG_LINUX_COMMAND_LINE="console=ttyS0,115200 loglevel=4 goesroot=auto:10 ip=dhcp"
 CONFIG_LINUX_INITRD="../../platina-mk1.cpio.xz"
