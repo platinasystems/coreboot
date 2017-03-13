@@ -29,6 +29,7 @@ void mainboard_init(void *ignored)
         device_t c_dev;
         uint32_t reg32;
         uint16_t reg16;
+	uint8_t reg8;
 
         printk(BIOS_DEBUG, "Mainboard Init\n");
 
@@ -68,4 +69,11 @@ void mainboard_init(void *ignored)
         printk(BIOS_DEBUG, "x86's U2ECR: %x\n", pch_iobp_read(0xe5004100));
         pch_iobp_update(0xe5004100, 0xffff80ff, 0x00002400);
         printk(BIOS_DEBUG, "x86's U2ECR: %x\n", pch_iobp_read(0xe5004100));
+
+	/* Disable CPLD boot dog */
+	reg8 = inb(0x604);
+	outb((reg8 & 0xfd), 0x604);
+	printk(BIOS_DEBUG, "CPLD's ctrl-1: %x\n", inb(0x604));
+	printk(BIOS_DEBUG, "CPLD's stat-1: %x\n", inb(0x602));
+	printk(BIOS_DEBUG, "CPLD's mask-0: %x\n", inb(0x605));
 }
