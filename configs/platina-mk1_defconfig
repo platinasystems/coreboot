@@ -5,7 +5,7 @@ CONFIG_ENABLE_FSP_FAST_BOOT=y
 CONFIG_BOARD_INTEL_CAMELBACKMOUNTAIN_PLATINA_FSP=y
 # CONFIG_CONSOLE_POST is not set
 CONFIG_COREBOOT_ROMSIZE_KB_16384=y
-CONFIG_CPU_MICROCODE_HEADER_FILES="3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050663_07000009.h 3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050662_0000000F.h 3rdparty/intel-blobs/microcode/cpu/broadwell_de/MFF50661_F1000008.h"
+CONFIG_CPU_MICROCODE_HEADER_FILES="3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050664_0F00000C.h 3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050663_0700000E.h 3rdparty/intel-blobs/microcode/cpu/broadwell_de/M1050662_00000011.h"
 CONFIG_FSP_LOC=0xffedfa00
 CONFIG_HAVE_FSP_BIN=y
 # CONFIG_VGA_ROM_RUN is not set
