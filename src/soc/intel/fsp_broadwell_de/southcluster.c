@@ -132,9 +132,11 @@ static void write_pci_config_irqs(void)
 		device_num = PCI_SLOT(parent_bdf);
 
 		if (ir->pcidev[device_num] == 0) {
+#if 0
 			printk(BIOS_WARNING,
 				"Warning: PCI Device %d does not have an IRQ entry, skipping it\n",
 				device_num);
+#endif
 			continue;
 		}
 
