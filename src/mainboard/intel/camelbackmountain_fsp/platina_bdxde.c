@@ -81,9 +81,9 @@ void mainboard_init(void *ignored)
 	printk(BIOS_DEBUG, "CPLD's mask-0: %x\n", inb(0x605));
 
 	/* Setup GPIOs Registers */
-	outl(0xbfeff7c3, DEFAULT_GPIOBASE + 0x00); /* GPIO_USE_SEL	*/
+	outl(0xbfeff7d3, DEFAULT_GPIOBASE + 0x00); /* GPIO_USE_SEL	*/
 	outl(0x0910e802, DEFAULT_GPIOBASE + 0x04); /* GP_IO_SEL 	*/
-	outl(0xb915403c, DEFAULT_GPIOBASE + 0x0c); /* GP_LVL 		*/
+	outl(0xb915402c, DEFAULT_GPIOBASE + 0x0c); /* GP_LVL 		*/
 
 	outl(0x3cff7ff7, DEFAULT_GPIOBASE + 0x30); /* GPIO_USE_SEL2 	*/
 	outl(0x03808004, DEFAULT_GPIOBASE + 0x34); /* GP_IO_SEL2 	*/
