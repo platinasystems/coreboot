@@ -30,28 +30,35 @@
 ## SUCH DAMAGE.
 ##
 
-export top := $(CURDIR)
-export src := src
-export srck := $(top)/util/kconfig
+top := $(CURDIR)
+src := src
+srck := $(top)/util/kconfig
 ifneq ($(O),)
 obj = $(O)
 else
 obj ?= build
 override obj := $(subst $(top)/,,$(abspath $(obj)))
 endif
-export obj
-export objutil ?= $(obj)/util
-export objk := $(objutil)/kconfig
+objutil ?= $(obj)/util
+objk := $(objutil)/kconfig
 absobj := $(abspath $(obj))
 
+COREBOOT_EXPORTS := COREBOOT_EXPORTS
+COREBOOT_EXPORTS += top src srck obj objutil objk
 
-export KCONFIG_AUTOHEADER := $(obj)/config.h
-export KCONFIG_AUTOCONFIG := $(obj)/auto.conf
-export KCONFIG_DEPENDENCIES := $(obj)/auto.conf.cmd
-export KCONFIG_SPLITCONFIG := $(obj)/config
-export KCONFIG_TRISTATE := $(obj)/tristate.conf
-export KCONFIG_NEGATIVES := 1
-export KCONFIG_STRICT := 1
+DOTCONFIG ?= $(top)/.config
+KCONFIG_CONFIG = $(DOTCONFIG)
+KCONFIG_AUTOHEADER := $(obj)/config.h
+KCONFIG_AUTOCONFIG := $(obj)/auto.conf
+KCONFIG_DEPENDENCIES := $(obj)/auto.conf.cmd
+KCONFIG_SPLITCONFIG := $(obj)/config
+KCONFIG_TRISTATE := $(obj)/tristate.conf
+KCONFIG_NEGATIVES := 1
+KCONFIG_STRICT := 1
+
+COREBOOT_EXPORTS += KCONFIG_CONFIG KCONFIG_AUTOHEADER KCONFIG_AUTOCONFIG
+COREBOOT_EXPORTS += KCONFIG_DEPENDENCIES KCONFIG_SPLITCONFIG KCONFIG_TRISTATE
+COREBOOT_EXPORTS += KCONFIG_NEGATIVES KCONFIG_STRICT
 
 # directory containing the toplevel Makefile.inc
 TOPLEVEL := .
@@ -89,6 +96,8 @@ PREPROCESS_ONLY := -E -P -x assembler-with-cpp -undef -I .
 
 DOXYGEN := doxygen
 DOXYGEN_OUTPUT_DIR := doxygen
+
+export $(COREBOOT_EXPORTS)
 
 all: real-all
 
