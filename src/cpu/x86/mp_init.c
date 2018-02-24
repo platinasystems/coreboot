@@ -756,6 +756,9 @@ static void asmlinkage smm_do_relocation(void *arg)
 
 	printk(BIOS_DEBUG, "New SMBASE 0x%08lx\n", perm_smbase);
 
+	/* write cache to DRAM before calling relocation handler */
+        wbinvd();
+
 	/* Setup code checks this callback for validity. */
 	mp_state.ops.relocation_handler(cpu, curr_smbase, perm_smbase);
 }
