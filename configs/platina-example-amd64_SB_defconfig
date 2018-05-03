@@ -3,4 +3,4 @@ CONFIG_COREBOOT_ROMSIZE_KB_8192=y
 CONFIG_PAYLOAD_LINUX=y
 CONFIG_PAYLOAD_FILE="../../example-amd64.vmlinuz"
 CONFIG_LINUX_COMMAND_LINE="console=ttyS0,115200 loglevel=4 goesroot=auto:10s ip=dhcp"
-CONFIG_LINUX_INITRD="../../buildroot/example-amd64/images/rootfs.cpio.xz"
+CONFIG_LINUX_INITRD="../../example-amd64.cpio.xz"
