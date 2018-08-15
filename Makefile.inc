@@ -40,7 +40,9 @@ KERNELVERSION := $(strip $(if $(GIT),\
 		coreboot-unknown$(KERNELREVISION))))
 endif
 endif
-COREBOOT_EXPORTS += KERNELVERSION
+EXTRAVERSION := $(shell cd $(TOPLEVEL)/../../../go;\
+	git describe --dirty --always)
+COREBOOT_EXPORTS += KERNELVERSION EXTRAVERSION
 
 #######################################################################
 # Basic component discovery
@@ -368,8 +370,8 @@ ifeq ($(CONFIG_COMPRESS_PRERAM_STAGES),y)
 CBFS_PRERAM_COMPRESS_FLAG:=LZ4
 endif
 
-ifneq ($(CONFIG_LOCALVERSION),"")
-COREBOOT_EXTRA_VERSION := -$(call strip_quotes,$(CONFIG_LOCALVERSION))
+ifneq ($(EXTRAVERSION),"")
+COREBOOT_EXTRA_VERSION := $(call strip_quotes,$(EXTRAVERSION))
 COREBOOT_EXPORTS += COREBOOT_EXTRA_VERSION
 endif
 
