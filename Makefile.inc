@@ -38,7 +38,7 @@ KERNELVERSION := $(strip $(if $(GIT),\
 		coreboot-unknown$(KERNELREVISION))))
 endif
 endif
-EXTRAVERSION := $(shell cd $(TOPLEVEL)/../../../go;\
+EXTRAVERSION := $(shell cd $(TOPLEVEL)/../go;\
 	git describe --dirty --always)
 COREBOOT_EXPORTS += KERNELVERSION EXTRAVERSION
 
