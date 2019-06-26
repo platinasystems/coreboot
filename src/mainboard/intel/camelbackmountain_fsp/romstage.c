@@ -41,5 +41,6 @@ void late_mainboard_romstage_entry(void)
  */
 void romstage_fsp_rt_buffer_callback(FSP_INIT_RT_BUFFER *FspRtBuffer)
 {
-
+	UPD_DATA_REGION *UpdData = FspRtBuffer->Common.UpdDataRgnPtr;
+	UpdData->DebugOutputLevel = 2;
 }
