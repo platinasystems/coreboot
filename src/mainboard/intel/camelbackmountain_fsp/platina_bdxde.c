@@ -32,7 +32,6 @@ void mainboard_init(void *ignored)
         device_t c_dev;
         uint32_t reg32;
         uint16_t reg16;
-	uint8_t reg8;
 
         printk(BIOS_DEBUG, "Mainboard Init\n");
 
