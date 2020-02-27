@@ -20,12 +20,13 @@
 #if CONFIG(VGA_ROM_RUN)
 #include <x86emu/x86emu.h>
 #endif
+#include "mainboard.h"
 
 /*
  * mainboard_enable is executed as first thing after enumerate_buses().
  * This is the earliest point to add customization.
  */
-void __attribute__((weak)) mainboard_enable(device_t dev) {}
+void __attribute__((weak)) mainboard_enable(struct device *dev) {}
 
 struct chip_operations mainboard_ops = {
 	.init = mainboard_init,

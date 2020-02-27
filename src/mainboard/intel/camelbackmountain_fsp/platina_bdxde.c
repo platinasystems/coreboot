@@ -29,7 +29,7 @@
 
 void mainboard_init(void *ignored)
 {
-        device_t c_dev;
+        struct device *c_dev;
         uint32_t reg32;
         uint16_t reg16;
 

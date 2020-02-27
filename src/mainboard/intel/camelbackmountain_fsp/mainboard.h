@@ -16,4 +16,4 @@
 #include <device/device.h>
 
 extern void mainboard_init(void *);
-extern void mainboard_enable(device_t dev);
+extern void mainboard_enable(struct device *dev);
