@@ -1,2 +1,2 @@
-config BOARD_INTEL_CAMELBACKMOUNTAIN_FSP
-	bool "Camelback Mountain FSP-based CRB"
+config BOARD_PLATINA_MK1
+	bool "DC-MK1-1 Daughter Card"

@@ -1,0 +1,16 @@
+if VENDOR_PLATINA
+
+choice
+	prompt "Mainboard model"
+
+source "src/mainboard/platina/*/Kconfig.name"
+
+endchoice
+
+source "src/mainboard/platina/*/Kconfig"
+
+config MAINBOARD_VENDOR
+	string
+	default "Platina"
+
+endif # VENDOR_PLATINA
