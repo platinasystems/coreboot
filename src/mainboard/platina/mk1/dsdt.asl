@@ -363,5 +363,27 @@ DefinitionBlock(
 				}
 			})
 		}
+
+		Device (TMP0)
+		{
+			Name (_HID, "PRP0001")
+        		Name (_DSD, Package() {
+                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                	     Package () {
+                             	     Package (2) { "compatible", "ti,tmp75" },
+                	     }
+        		})
+        		Method (_CRS, 0, Serialized)
+        		{
+				Name (SBUF, ResourceTemplate ()
+                		{
+					I2cSerialBusV2 (0x4f, ControllerInitiated,
+                                	400000, AddressingMode7Bit,
+                                	"\\_SB.PCI0.SBUS", 0x00,
+                                	ResourceConsumer, , Exclusive,)
+               			})
+                		Return (SBUF)
+        		}
+		}
 	}	
 }
