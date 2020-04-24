@@ -347,3 +347,5 @@ Method (_PRT, 0) {
 }
 
 #include "lpc.asl"
+
+#include <southbridge/intel/common/acpi/smbus.asl>
