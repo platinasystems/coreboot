@@ -291,4 +291,77 @@ DefinitionBlock(
 	}
 
 	#include "acpi/mainboard.asl"
+
+	Scope (\_SB.PCI0.SBUS)
+	{
+		Device (NVM0)
+		{	
+			Name (_HID, "INT3499") /* _HID: Hardware ID */
+			Name (_UID, Zero)  /* _UID: Unique ID */
+			Name (_DDN, "ONIE")  /* _DDN: DOS Device Name */
+
+			Method (_STA, 0, NotSerialized)  /* _STA: Status */
+			{
+				Return (0x0F)
+			}
+
+			Name (_CRS, ResourceTemplate ()
+			{
+				I2cSerialBus (0x0051,
+					     ControllerInitiated,
+					     400000, // Bus Speed
+					     AddressingMode7Bit,
+					     "\\_SB.PCI0.SBUS", // Link to host controller
+					     0x00, // Resource source index, MBZ
+					     ResourceConsumer,
+					     ,) // Descriptor Name
+			})
+
+			Name (_DSD, Package ()
+			{
+				ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+				Package () {
+					Package () { "size", 16384 },
+					Package () { "pagesize", 64 },
+					Package () { "no-read-rollover", 1 },
+					Package () { "address-width", 16 },
+				}
+			})
+		}
+		
+		Device (NVM1)
+		{	
+			Name (_HID, "INT3499") /* _HID: Hardware ID */
+			Name (_UID, Zero)  /* _UID: Unique ID */
+			Name (_DDN, "ONIE")  /* _DDN: DOS Device Name */
+
+			Method (_STA, 0, NotSerialized)  /* _STA: Status */
+			{
+				Return (0x0F)
+			}
+
+			Name (_CRS, ResourceTemplate ()
+			{
+				I2cSerialBus (0x0053,
+					     ControllerInitiated,
+					     400000, // Bus Speed
+					     AddressingMode7Bit,
+					     "\\_SB.PCI0.SBUS", // Link to host controller
+					     0x00, // Resource source index, MBZ
+					     ResourceConsumer,
+					     ,) // Descriptor Name
+			})
+
+			Name (_DSD, Package ()
+			{
+				ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+				Package () {
+					Package () { "size", 16384 },
+					Package () { "pagesize", 64 },
+					Package () { "no-read-rollover", 1 },
+					Package () { "address-width", 16 },
+				}
+			})
+		}
+	}	
 }
