@@ -325,6 +325,17 @@ DefinitionBlock(
 					Package () { "pagesize", 64 },
 					Package () { "no-read-rollover", 1 },
 					Package () { "address-width", 16 },
+				},
+				ToUUID ("dbb8e3e6-5886-4ba6-8795-1319f52a966b"),
+				Package () {
+					Package () { "onie-data", NVRG },
+				}
+			})
+
+			Name (NVRG, Package() {
+				ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+				Package () {
+					Package () { "reg", Package() { 0x0, 0x0800 } },
 				}
 			})
 		}
@@ -360,8 +371,45 @@ DefinitionBlock(
 					Package () { "pagesize", 64 },
 					Package () { "no-read-rollover", 1 },
 					Package () { "address-width", 16 },
+				},
+				ToUUID ("dbb8e3e6-5886-4ba6-8795-1319f52a966b"),
+				Package () {
+					Package () { "onie-data", "NVRG" },
 				}
 			})
+
+			Name (NVRG, Package() {
+				ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+				Package () {
+					Package () { "reg", Package() { 0x0, 0x0800 } },
+				}
+			})
+		}
+
+		Device (ONI0)
+		{
+			Name (_HID, "PRP0001")
+        		Name (_DSD, Package() {
+                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                	     Package () {
+                             	     Package () { "compatible", "linux,onie" },
+				     Package () { "nvmem-cells", Package() { NVM0 } },
+				     Package () { "nvmem-cell-names", Package() { "onie-data" } },
+                	     }
+        		})
+		}
+
+		Device (ONI1)
+		{
+			Name (_HID, "PRP0001")
+        		Name (_DSD, Package() {
+                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                	     Package () {
+                             	     Package () { "compatible", "linux,onie" },
+				     Package () { "nvmem-cells", Package() { NVM1 } },
+				     Package () { "nvmem-cell-names", Package() { "onie-data" } },
+                	     }
+        		})
 		}
 
 		Device (TMP0)
@@ -370,7 +418,7 @@ DefinitionBlock(
         		Name (_DSD, Package() {
                 	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
                 	     Package () {
-                             	     Package (2) { "compatible", "ti,tmp75" },
+                             	     Package () { "compatible", "ti,tmp75" },
                 	     }
         		})
         		Method (_CRS, 0, Serialized)
