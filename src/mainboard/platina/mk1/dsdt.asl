@@ -292,6 +292,35 @@ DefinitionBlock(
 
 	#include "acpi/mainboard.asl"
 
+	scope (\_SB)
+	{
+		Device (ONI0)
+		{
+			Name (_HID, "PRP0001")
+        		Name (_DSD, Package() {
+                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                	     Package () {
+                             	     Package () { "compatible", "linux,onie" },
+				     Package () { "nvmem-cells", Package() { \_SB.PCI0.SBUS.NVM0 } },
+				     Package () { "nvmem-cell-names", Package() { "onie-data" } },
+                	     }
+        		})
+		}
+
+		Device (ONI1)
+		{
+			Name (_HID, "PRP0001")
+        		Name (_DSD, Package() {
+                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                	     Package () {
+                             	     Package () { "compatible", "linux,onie" },
+				     Package () { "nvmem-cells", Package() { \_SB.PCI0.SBUS.NVM1 } },
+				     Package () { "nvmem-cell-names", Package() { "onie-data" } },
+                	     }
+        		})
+		}
+	}
+	
 	Scope (\_SB.PCI0.SBUS)
 	{
 		Device (NVM0)
@@ -384,32 +413,6 @@ DefinitionBlock(
 					Package () { "reg", Package() { 0x0, 0x0800 } },
 				}
 			})
-		}
-
-		Device (ONI0)
-		{
-			Name (_HID, "PRP0001")
-        		Name (_DSD, Package() {
-                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-                	     Package () {
-                             	     Package () { "compatible", "linux,onie" },
-				     Package () { "nvmem-cells", Package() { NVM0 } },
-				     Package () { "nvmem-cell-names", Package() { "onie-data" } },
-                	     }
-        		})
-		}
-
-		Device (ONI1)
-		{
-			Name (_HID, "PRP0001")
-        		Name (_DSD, Package() {
-                	     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-                	     Package () {
-                             	     Package () { "compatible", "linux,onie" },
-				     Package () { "nvmem-cells", Package() { NVM1 } },
-				     Package () { "nvmem-cell-names", Package() { "onie-data" } },
-                	     }
-        		})
 		}
 
 		Device (TMP0)
