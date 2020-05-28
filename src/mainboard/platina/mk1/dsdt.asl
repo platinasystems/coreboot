@@ -594,144 +594,112 @@ DefinitionBlock(
 					Name (G00A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G01A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G02A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G03A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G04A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G05A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G06A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G07A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G08A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G09A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G10A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G11A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G12A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G13A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G14A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G15A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
@@ -787,144 +755,112 @@ DefinitionBlock(
 					Name (G16A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G17A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G18A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G19A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G20A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G21A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G22A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G23A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G24A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G25A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G26A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G27A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G28A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G29A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G30A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G31A, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
@@ -980,144 +916,112 @@ DefinitionBlock(
 					Name (G00I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G01I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G02I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G03I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G04I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G05I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G06I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G07I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G08I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G09I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G10I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G11I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G12I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G13I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G14I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G15I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
@@ -1173,144 +1077,112 @@ DefinitionBlock(
 					Name (G16I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G17I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G18I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G19I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G20I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G21I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G22I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G23I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G24I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G25I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G26I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G27I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G28I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G29I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G30I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
 					Name (G31I, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"input", 1},
 						}
 					})
 					
@@ -1371,144 +1243,112 @@ DefinitionBlock(
 					Name (G00L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G01L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G02L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G03L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G04L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G05L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G06L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G07L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G08L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G09L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G10L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G11L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G12L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G13L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G14L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G15L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
@@ -1564,144 +1404,112 @@ DefinitionBlock(
 					Name (G16L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G17L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G18L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G19L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G20L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G21L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G22L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G23L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G24L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G25L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G26L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G27L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G28L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G29L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G30L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
 					Name (G31L, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"output-low", 1},
 						}
 					})
 					
@@ -1757,144 +1565,112 @@ DefinitionBlock(
 					Name (G00R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G01R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G02R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G03R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G04R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G05R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G06R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G07R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G08R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G09R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G10R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G11R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G12R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G13R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G14R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G15R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
@@ -1950,144 +1726,112 @@ DefinitionBlock(
 					Name (G16R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 0, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G17R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 1, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G18R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 2, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G19R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 3, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G20R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 4, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G21R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 5, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G22R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 6, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G23R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 7, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G24R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 8, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G25R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 9, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G26R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 10, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G27R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 11, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G28R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 12, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G29R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 13, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G30R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 14, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
 					Name (G31R, Package () {
 						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 						Package () {
-							Package () {"gpio-hog", 1},
 							Package () {"gpios", Package () { 15, 0 }},
-							Package () {"output-high", 1},
 						}
 					})
 					
@@ -2145,144 +1889,112 @@ DefinitionBlock(
 			Name (G00H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 0, 0 }},
-					Package () {"output-high", 1},
 				}
 			})
 			
 			Name (G01H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 1, 0 }},
-					Package () {"output-high", 1},
 				}
 			})
 			
 			Name (G02H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 2, 0 }},
-					Package () {"output-low", 1},
 				}
 			})
 			
 			Name (G03H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 3, 0 }},
-					Package () {"input", 1},
 				}
 			})
 			
 			Name (G04H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 4, 0 }},
-					Package () {"output-low", 1},
 				}
 			})
 			
 			Name (G05H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 5, 0 }},
-					Package () {"output-low", 1},
 				}
 			})
 			
 			Name (G06H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 6, 0 }},
-					Package () {"output-low", 1},
 				}
 			})
 			
 			Name (G07H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 7, 0 }},
-					Package () {"output-low", 1},
 				}
 			})
 			
 			Name (G08H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 8, 0 }},
-					Package () {"input", 1},
 				}
 			})
 			
 			Name (G09H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 9, 0 }},
-					Package () {"input", 1},
 				}
 			})
 			
 			Name (G10H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 10, 0 }},
-					Package () {"input", 1},
 				}
 			})
 			
 			Name (G11H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 11, 0 }},
-					Package () {"input", 1},
 				}
 			})
 			
 			Name (G12H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 12, 0 }},
-					Package () {"input", 1},
 				}
 			})
 			
 			Name (G13H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 13, 0 }},
-					Package () {"output-low", 1},
 				}
 			})
 			
 			Name (G14H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 14, 0 }},
-					Package () {"output-high", 1},
 				}
 			})
 			
 			Name (G15H, Package () {
 				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
 				Package () {
-					Package () {"gpio-hog", 1},
 					Package () {"gpios", Package () { 15, 0 }},
-					Package () {"output-high", 1},
 				}
 			})
 			
