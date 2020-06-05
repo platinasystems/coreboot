@@ -1856,7 +1856,7 @@ DefinitionBlock(
 						Package () {
 							"TH_RST_L", "TH_PCIE_RST_L", 
 							"LED_CLR", "HOST_TO_BMC_I2C", 
-							"UART_MUX_SEL", "USB_MUX_SEL", 
+							"USB_MUX_SEL", "UART_MUX_SEL", 
 							"TH_CLK_FSEL_0", "TH_CLK_FSEL_1", 
 						 	"TH_INT_L", "QSFP_GPIO0_INT_L",
 							"QSFP_GPIO1_INT_L", "QSFP_GPIO2_INT_L",
