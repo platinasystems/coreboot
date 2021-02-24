@@ -101,6 +101,49 @@ int do_smbus_read_byte(unsigned int smbus_base, unsigned int device, unsigned in
 	return byte;
 }
 
+int do_smbus_recv_byte(unsigned int smbus_base, unsigned int device)
+{
+	unsigned char global_status_register;
+	unsigned char byte;
+
+	if (smbus_wait_until_ready(smbus_base) < 0) {
+		return SMBUS_WAIT_UNTIL_READY_TIMEOUT;
+	}
+	/* Setup transaction */
+	/* Disable interrupts */
+	outb(inb(smbus_base + SMBHSTCTL) & (~1), smbus_base + SMBHSTCTL);
+	/* Set the device I'm talking to */
+	outb(((device & 0x7f) << 1) | 1, smbus_base + SMBXMITADD);
+	/* Set up for smbus receive byte */
+	outb((inb(smbus_base + SMBHSTCTL) & 0x83) | (0x1 << 2),
+	     smbus_base + SMBHSTCTL);
+
+	/* Clear any lingering errors, so the transaction will run */
+	outb(inb(smbus_base + SMBHSTSTAT), smbus_base + SMBHSTSTAT);
+
+	/* Start the command */
+	outb((inb(smbus_base + SMBHSTCTL) | 0x40),
+	     smbus_base + SMBHSTCTL);
+
+	/* Poll for transaction completion */
+	if (smbus_wait_until_ready(smbus_base) < 0) {
+		return SMBUS_WAIT_UNTIL_DONE_TIMEOUT;
+	}
+
+	global_status_register = inb(smbus_base + SMBHSTSTAT);
+
+	/* Ignore the "In Use" status... */
+	global_status_register &= ~(3 << 5);
+
+	/* Read results of transaction */
+	byte = inb(smbus_base + SMBHSTDAT0);
+
+	if (global_status_register != (1 << 1)) {
+		return SMBUS_ERROR;
+	}
+	return byte;
+}
+
 int do_smbus_write_byte(unsigned int smbus_base, unsigned int device,
 			unsigned int address, unsigned int data)
 {
@@ -122,7 +165,7 @@ int do_smbus_write_byte(unsigned int smbus_base, unsigned int device,
 	/* Clear any lingering errors, so the transaction will run */
 	outb(inb(smbus_base + SMBHSTSTAT), smbus_base + SMBHSTSTAT);
 
-	/* Clear the data byte... */
+	/* Write the data byte... */
 	outb(data, smbus_base + SMBHSTDAT0);
 
 	/* Start the command */

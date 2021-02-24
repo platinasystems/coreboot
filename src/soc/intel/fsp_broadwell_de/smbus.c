@@ -57,6 +57,19 @@ static int lsmbus_read_byte(struct device *dev, uint8_t address)
 	return do_smbus_read_byte(res->base, device, address);
 }
 
+static int lsmbus_recv_byte(struct device *dev)
+{
+	uint16_t device;
+	struct resource *res;
+	struct bus *pbus;
+
+	device = dev->path.i2c.device;
+	pbus = get_pbus_smbus(dev);
+	res = find_resource(pbus->dev, PCI_BASE_ADDRESS_4);
+
+	return do_smbus_recv_byte(res->base, device);
+}
+
 static int lsmbus_write_byte(struct device *dev, uint8_t address, uint8_t data)
 {
 	uint16_t device;
@@ -72,6 +85,7 @@ static int lsmbus_write_byte(struct device *dev, uint8_t address, uint8_t data)
 static struct smbus_bus_operations lops_smbus_bus = {
 	.read_byte	= lsmbus_read_byte,
 	.write_byte	= lsmbus_write_byte,
+	.recv_byte	= lsmbus_recv_byte,
 };
 
 static struct device_operations smbus_ops = {

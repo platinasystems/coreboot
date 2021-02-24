@@ -42,6 +42,7 @@
 
 int do_smbus_read_byte(unsigned int smbus_base, unsigned int device,
 		       unsigned int address);
+int do_smbus_recv_byte(unsigned int smbus_base, unsigned int device);
 int do_smbus_write_byte(unsigned int smbus_base, unsigned int device,
 			unsigned int address, unsigned int data);
 
