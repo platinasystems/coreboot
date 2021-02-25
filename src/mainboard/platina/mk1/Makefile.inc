@@ -13,4 +13,4 @@
 ## GNU General Public License for more details.
 ##
 
-ramstage-y += irqroute.c
+ramstage-y += irqroute.c onie/onie.c

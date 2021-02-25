@@ -9,6 +9,31 @@ chip soc/intel/fsp_broadwell_de
 		device pci 1d.0 on end # EHCI Controller
 		device pci 1f.0 on end # LPC Bridge
 		device pci 1f.2 on end # SATA Controller
-		device pci 1f.3 on end # SMBus Controller
+		device pci 1f.3 on     # SMBus Controller
+		       chip mainboard/platina/mk1/onie
+		       	    register "property_count" = "4"
+		       	    register "property_list[0].type" = "ACPI_DP_TYPE_INTEGER"
+			    register "property_list[0].name" = ""size""
+			    register "property_list[0].integer" = "16384"
+		       	    register "property_list[1].type" = "ACPI_DP_TYPE_INTEGER"
+			    register "property_list[1].name" = ""pagesize""
+			    register "property_list[1].integer" = "64"
+		       	    register "property_list[2].type" = "ACPI_DP_TYPE_INTEGER"
+			    register "property_list[2].name" = ""no-read-rollover""
+			    register "property_list[2].integer" = "1"
+		       	    register "property_list[3].type" = "ACPI_DP_TYPE_INTEGER"
+			    register "property_list[3].name" = ""address-width""
+			    register "property_list[3].integer" = "16"
+			    register "regs_count" = "2"
+			    register "regs_list[0]" = "0x0"
+			    register "regs_list[1]" = "0x0800"
+			    register "onie_count" = "1"
+			    register "onie_list[0].type" = "ACPI_DP_TYPE_STRING"
+			    register "onie_list[0].name" = ""compatible""
+			    register "onie_list[0].string" = ""linux,onie""
+			    device i2c 53 on end	       # Probe new address first
+		       	    device i2c 51 on end
+		       end
+		end
 	end
 end
