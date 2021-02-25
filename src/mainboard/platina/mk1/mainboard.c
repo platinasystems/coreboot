@@ -45,7 +45,8 @@ static void mainboard_init(void *ignored)
         struct device *c_dev;
         uint32_t reg32;
         uint16_t reg16;
-
+	uint8_t reg8;
+	
         printk(BIOS_DEBUG, "Mainboard Init\n");
 
         /* LPC Controller                               */
@@ -86,10 +87,19 @@ static void mainboard_init(void *ignored)
         printk(BIOS_DEBUG, "x86's U2ECR: %x\n", pch_iobp_read(0xe5004100));
 
 	/* Report CPLD state */
-	printk(BIOS_DEBUG, "CPLD's ctrl-1: %x\n", inb(0x604));
+	reg8 = inb(0x604);
+	printk(BIOS_DEBUG, "CPLD's ctrl-1: %x\n", reg8);
 	printk(BIOS_DEBUG, "CPLD's stat-1: %x\n", inb(0x602));
 	printk(BIOS_DEBUG, "CPLD's mask-0: %x\n", inb(0x605));
 
+	/* Ensure watchdog is enabled */
+	if ((reg8 & 0x3) != 0x3) {
+		reg8 = reg8 | 0x3;
+		outb(reg8, 0x604);
+		printk(BIOS_DEBUG, "Reenabled watchdog: CPLD ctrl-1: %x\n",
+		       reg8);
+	}
+	
 	/* Setup GPIOs Registers */
 	outl(0xbfeff7d3, DEFAULT_GPIOBASE + 0x00); /* GPIO_USE_SEL	*/
 	outl(0x0910e802, DEFAULT_GPIOBASE + 0x04); /* GP_IO_SEL 	*/
