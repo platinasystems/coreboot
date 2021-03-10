@@ -198,6 +198,7 @@ static void onie_init(struct device *dev)
 	if (err < 0) {
 		printk(BIOS_INFO, "%s: probe of %s failed\n",
 		       __func__, dev_path(dev));
+		dev->enabled = 0;
 		return;
 	}
 
