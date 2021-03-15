@@ -118,7 +118,8 @@ static bool has_prefix(const char *pfx, const char *attr)
 	return strncmp(pfx, attr, len) == 0;
 }
 
-static void add_gpio_table(struct acpi_dp *dp, const char *table, int ch, int base,
+static void add_gpio_table(struct acpi_dp *dp, const char *table,
+			   int ch, int base,
 			   enum acpi_gpio_type type, enum acpi_gpio_type pull,
 			   enum acpi_gpio_io_restrict direction,
 			   enum acpi_gpio_polarity polarity)
@@ -153,7 +154,7 @@ static void add_gpio_table(struct acpi_dp *dp, const char *table, int ch, int ba
 	};
 
 	gpios = acpi_dp_new_table(table);
-		
+
 	for (i = 0; i <=1; i++) {
 		for (j = 0; j <=1; j++) {
 			path = malloc(32); /* len = 30 \_SB.PCI0.SBUS.MUX0.CHxx.QSxx<nul> */
@@ -161,7 +162,7 @@ static void add_gpio_table(struct acpi_dp *dp, const char *table, int ch, int ba
 			snprintf(path, 32, "\\_SB.PCI0.SBUS.MUX0.CH%02d.QS%02d", ch, base+i);
 			gpio[j].resource = path;
 			acpi_device_write_gpio(&gpio[j]);
-			
+
 			for (k = 0; k <= 7; k++) {
 				acpi_dp_add_reference(gpios, NULL, "^XETH");
 				acpi_dp_add_integer(gpios, NULL, crs_offset);
@@ -187,12 +188,12 @@ static void onie_init(struct device *dev)
 	u8 *end;
 	struct onie_tlv *tlv;
 	static bool found = 0;
-	
+
 	if (!dev->enabled || found) {
 		dev->enabled = 0;
 		return;
 	}
-	
+
 	err = smbus_write_byte(dev, 0, 0);
 	printk(BIOS_INFO, "%s: smbus_write_byte select address returned %d\n",
 	       __func__, err);
@@ -217,7 +218,7 @@ static void onie_init(struct device *dev)
 	/* Mark that we found a good part, as we were able to read
 	 * the entire part into our buffer.
 	 */
-	
+
 	found = 1;
 	onie_dev = dev;
 
@@ -246,7 +247,7 @@ static void onie_init(struct device *dev)
 	}
 	crcsz = fullsz - onie_sz_crc;
 	crc_read = read_be32(&buf[crcsz]);
-	crc_calc = ~onie_crc(~0, buf, crcsz);	
+	crc_calc = ~onie_crc(~0, buf, crcsz);
 	if (crc_read != crc_calc) {
 		printk(BIOS_INFO, "%s crc read %x calc %x\n",
 		       __func__, crc_read, crc_calc);
@@ -315,9 +316,9 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 		.resource = sbus_scope,
 	};
 	struct acpi_dp *dsd, *nvrg, *nvmem_cells, *nvmem_cell_names;
-	struct acpi_dp *qsfp_addrs;
+	struct acpi_dp *qsfp_addrs, *linktab;
 	char name[DEVICE_PATH_MAX];
-	
+
 	if (!dev->enabled) {
 		return;
 	}
@@ -325,7 +326,7 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 	printk(BIOS_INFO, "%s: dev_path %s acpi_device_path %s scope %s enabled %d\n",
 	       __func__, dev_path(dev), acpi_device_path(dev),
 	       acpi_device_scope(dev), dev->enabled);
-	
+
 	/* Device */
 	acpigen_write_scope(sbus_scope);
 	acpigen_write_device(acpi_device_name(dev));
@@ -344,7 +345,7 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 	nvrg = acpi_dp_new_table("NVRG");
 	acpi_dp_add_integer_array(nvrg, "reg", config->regs_list,
 				  config->regs_count);
-	
+
 	dsd = acpi_dp_new_table("_DSD");
 
 	/* Add generic property list */
@@ -375,14 +376,14 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 		 platina_mk1_onie_acpi_name(dev));
 	acpi_dp_add_reference(nvmem_cells, NULL, name);
 	acpi_dp_add_array(dsd, nvmem_cells);
-	
+
 	nvmem_cell_names = acpi_dp_new_table("nvmem-cell-names");
 	acpi_dp_add_string(nvmem_cell_names, NULL, "onie-data");
-	
+
 	acpi_dp_add_array(dsd, nvmem_cell_names);
 
 	acpi_dp_write(dsd);
-	
+
 	acpigen_pop_len(); /* Device */
 
 	if (onie_validated && is_platina && is_known_model) {
@@ -399,17 +400,27 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 		acpigen_write_resourcetemplate_header();
 
 		add_gpio_table(dsd, "absent-gpios", 4, 40, ACPI_GPIO_TYPE_IO,
-			       ACPI_GPIO_PULL_DEFAULT, ACPI_GPIO_IO_RESTRICT_INPUT,
+			       ACPI_GPIO_PULL_DEFAULT,
+			       ACPI_GPIO_IO_RESTRICT_INPUT,
 			       ACPI_GPIO_ACTIVE_HIGH);
 		add_gpio_table(dsd, "int-gpios", 4, 42, ACPI_GPIO_TYPE_IO,
-			       ACPI_GPIO_PULL_DEFAULT, ACPI_GPIO_IO_RESTRICT_NONE,
+			       ACPI_GPIO_PULL_DEFAULT,
+			       ACPI_GPIO_IO_RESTRICT_NONE,
 			       ACPI_GPIO_ACTIVE_LOW);
 		add_gpio_table(dsd, "lpmode-gpios", 5, 40, ACPI_GPIO_TYPE_IO,
-			       ACPI_GPIO_PULL_DEFAULT, ACPI_GPIO_IO_RESTRICT_NONE,
+			       ACPI_GPIO_PULL_DEFAULT,
+			       ACPI_GPIO_IO_RESTRICT_NONE,
 			       ACPI_GPIO_ACTIVE_HIGH);
 		add_gpio_table(dsd, "reset-gpios", 5, 42, ACPI_GPIO_TYPE_IO,
-			       ACPI_GPIO_PULL_DEFAULT, ACPI_GPIO_IO_RESTRICT_NONE,
+			       ACPI_GPIO_PULL_DEFAULT,
+			       ACPI_GPIO_IO_RESTRICT_NONE,
 			       ACPI_GPIO_ACTIVE_LOW);
+
+		acpi_dp_add_integer(dsd, "link-count", 2);
+		linktab = acpi_dp_new_table("links");
+		acpi_dp_add_reference(linktab, NULL, "\\_SB.PCI0.BR2C.IXG0");
+		acpi_dp_add_reference(linktab, NULL, "\\_SB.PCI0.BR2C.IXG1");
+		acpi_dp_add_array(dsd, linktab);
 
 		qsfp_addrs = acpi_dp_new_table("qsfp-i2c-addrs");
 		acpi_dp_add_integer(qsfp_addrs, NULL, 0x50);
@@ -424,7 +435,7 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 
 		acpigen_pop_len(); /* Device */
 	}
-	
+
 	acpigen_pop_len(); /* Scope */
 
 	printk(BIOS_INFO, "%s: wrote ACPI tables\n", dev_path(dev));

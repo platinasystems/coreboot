@@ -1886,4 +1886,15 @@ DefinitionBlock(
                		})
 		}
 	}
+	Scope (\_SB.PCI0.BR2C)
+	{
+		Device (IXG0)
+		{
+			Name (_ADR, 0x00000000)
+		}
+		Device (IXG1)
+		{
+			Name (_ADR, 0x00000001)
+		}
+	}
 }
