@@ -85,6 +85,7 @@ enum onie_type {
 	onie_type_crc			= 0xfe,
 };
 
+static struct device *onie_dev;
 static u8 platina_version;
 static bool is_platina;
 static bool is_known_model;
@@ -218,7 +219,8 @@ static void onie_init(struct device *dev)
 	 */
 	
 	found = 1;
-	
+	onie_dev = dev;
+
 	/* Errors after this are not I/O errors, so the part is good.
 	 * At this point if we find any errors, it is a programming
 	 * error, but a good EEPROM, so our early exit is marked by
@@ -312,11 +314,8 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 		.speed = I2C_SPEED_FAST,
 		.resource = sbus_scope,
 	};
-	struct acpi_dp *dsd = NULL;
-	struct acpi_dp *nvrg = NULL;
-	struct acpi_dp *nvmem_cells = NULL;
-	struct acpi_dp *nvmem_cell_names = NULL;
-	
+	struct acpi_dp *dsd, *nvrg, *nvmem_cells, *nvmem_cell_names;
+	struct acpi_dp *qsfp_addrs;
 	char name[DEVICE_PATH_MAX];
 	
 	if (!dev->enabled) {
@@ -411,6 +410,13 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 		add_gpio_table(dsd, "reset-gpios", 5, 42, ACPI_GPIO_TYPE_IO,
 			       ACPI_GPIO_PULL_DEFAULT, ACPI_GPIO_IO_RESTRICT_NONE,
 			       ACPI_GPIO_ACTIVE_LOW);
+
+		qsfp_addrs = acpi_dp_new_table("qsfp-i2c-addrs");
+		acpi_dp_add_integer(qsfp_addrs, NULL, 0x50);
+		if (onie_dev->path.i2c.device != 0x51) {
+			acpi_dp_add_integer(qsfp_addrs, NULL, 0x51);
+		}
+		acpi_dp_add_array(dsd, qsfp_addrs);
 
 		acpigen_write_resourcetemplate_footer();
 
