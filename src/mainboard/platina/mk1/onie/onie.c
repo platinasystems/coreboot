@@ -85,11 +85,14 @@ enum onie_type {
 	onie_type_crc			= 0xfe,
 };
 
+#define LINKADDR_MAX_LEN 20		/* linkNNN-mac-address<nul> */
+
 static struct device *onie_dev;
 static u8 platina_version;
 static bool is_platina;
 static bool is_known_model;
 static bool onie_validated;
+static u8 base_mac[6];
 
 static u32
 onie_crc(u32 crc, unsigned char const *p, size_t len)
@@ -256,11 +259,20 @@ static void onie_init(struct device *dev)
 	end = buf + sizeof(struct onie_header) + tlvsz;
 	for (tlv = &od->tlv; (u8 *)tlv < end; tlv = onie_next(tlv)) {
 		if ((u8 *)tlv + tlv->l > end) {
-			printk(BIOS_INFO, "%s: tlv exceeds end",
+			printk(BIOS_INFO, "%s: tlv exceeds end\n",
 			       __func__);
 			return;
 		}
 		switch (tlv->t) {
+		case onie_type_mac_base:
+			if (tlv->l != 6) {
+				printk(BIOS_INFO, "%s: mac_base length is %d\n",
+				       __func__, tlv->l);
+				return;
+			}
+			memcpy(base_mac, tlv->v, 6);
+			break;
+
 		case onie_type_vendor:
 			if (has_prefix("Platina", (char *)tlv->v)) {
 				is_platina = 1;
@@ -317,7 +329,8 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 	};
 	struct acpi_dp *dsd, *nvrg, *nvmem_cells, *nvmem_cell_names;
 	struct acpi_dp *qsfp_addrs, *linktab;
-	char name[DEVICE_PATH_MAX];
+	char name[DEVICE_PATH_MAX], *linkaddr;
+	int i, j;
 
 	if (!dev->enabled) {
 		return;
@@ -417,10 +430,24 @@ static void platina_mk1_onie_fill_ssdt(struct device *dev,
 			       ACPI_GPIO_ACTIVE_LOW);
 
 		acpi_dp_add_integer(dsd, "link-count", 2);
+
 		linktab = acpi_dp_new_table("links");
 		acpi_dp_add_reference(linktab, NULL, "\\_SB.PCI0.BR2C.IXG0");
 		acpi_dp_add_reference(linktab, NULL, "\\_SB.PCI0.BR2C.IXG1");
 		acpi_dp_add_array(dsd, linktab);
+
+		for (i = 0; i < 2; i++) {
+			linkaddr = malloc(LINKADDR_MAX_LEN);
+			snprintf(linkaddr, LINKADDR_MAX_LEN,
+				 "link%d-mac-address", i);
+			linktab = acpi_dp_new_table(linkaddr);
+			for (j = 0; j < 6; j++) {
+				acpi_dp_add_integer(linktab, NULL,
+						    base_mac[j] +
+						    (j == 5 ? i + 2 : 0));
+			}
+			acpi_dp_add_array(dsd, linktab);
+		}
 
 		qsfp_addrs = acpi_dp_new_table("qsfp-i2c-addrs");
 		acpi_dp_add_integer(qsfp_addrs, NULL, 0x50);
