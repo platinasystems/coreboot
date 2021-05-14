@@ -1885,6 +1885,30 @@ DefinitionBlock(
                                 	ResourceConsumer, ,)
                		})
 		}
+
+		Device (IPC0)
+		{
+			Name (_HID, "PRP0001")
+        		Name (_DSD, Package() {
+				ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+				Package () {
+					Package () { "compatible", "linux,i2c-ipc-controller" },
+					Package () { "stream-ports",
+						Package() { 0x40, 0x50 }
+					},
+					Package () { "stream-port-names",
+						Package() { "stream-tobmc", "stream-frombmc" }
+					}
+				}
+			})
+        		Name (_CRS, ResourceTemplate ()
+			{
+				I2cSerialBus (0x64, ControllerInitiated,
+					400000, AddressingMode7Bit,
+                                	"\\_SB.PCI0.SBUS", 0x00,
+                                	ResourceConsumer, ,)
+               		})
+		}
 	}
 	Scope (\_SB.PCI0.BR2C)
 	{
